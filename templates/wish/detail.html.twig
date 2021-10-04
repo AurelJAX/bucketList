@@ -1,0 +1,34 @@
+{%  extends "/layout/base.html.twig" %}
+{# Listes des chises à faire avant de mourir #}
+
+{# Lien au stylesheet #}
+{%  block stylesheet %}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+{% endblock %}
+
+{# Titre de nav #}
+{% block mainTitle %}
+    <img src="/images/logo.png"/>
+    My Bucket-List
+{% endblock %}
+
+{# Contenu #}
+{% block content  %}
+    <h1>Détails</h1>
+
+    <p>{{ wish.title }}</p>
+    <p>{{ wish.description }}</p>
+    <p>{{ wish.author }}</p>
+    <p>{{ wish.dateCreated |date('D-m-Y H:i:s')}}</p>
+
+{% endblock %}
+
+
+
+
+{# Footer #}
+{%  block footer %}
+    <h5>@Bucket-List {{ "now" |date('Y') }}</h5>
+    <a class="nav-link" href="{{path('app_legal')}}">Mentions Légales</a>
+{% endblock %}
+

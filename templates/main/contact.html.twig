@@ -1,0 +1,37 @@
+{%  extends "/layout/base.html.twig" %}
+
+{# Lien au stylesheet #}
+{%  block stylesheet %}
+<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+{% endblock %}
+
+
+
+{# Titre de nav #}
+{% block mainTitle %}
+        <img src="/images/logo.png"/>
+        My Bucket-List
+{% endblock %}
+
+{# Contenu #}
+{% block content  %}
+        <h1>Contact</h1>
+
+        <p>Et quia Mesopotamiae tractus omnes crebro inquietari sueti praetenturis et stationibus servabantur agrariis, laevorsum flexo itinere Osdroenae subsederat extimas partes, novum parumque aliquando temptatum commentum adgressus. quod si impetrasset, fulminis modo cuncta vastarat. erat autem quod cogitabat huius modi.<br><br>
+
+                Hanc regionem praestitutis celebritati diebus invadere parans dux ante edictus per solitudines Aboraeque amnis herbidas ripas, suorum indicio proditus, qui admissi flagitii metu exagitati ad praesidia descivere Romana. absque ullo egressus effectu deinde tabescebat immobilis.<br><br>
+
+                Eo adducta re per Isauriam, rege Persarum bellis finitimis inligato repellenteque a conlimitiis suis ferocissimas gentes, quae mente quadam versabili hostiliter eum saepe incessunt et in nos arma moventem aliquotiens iuvant, Nohodares quidam nomine e numero optimatum, incursare Mesopotamiam quotiens copia dederit ordinatus, explorabat nostra sollicite, si repperisset usquam locum vi subita perrupturus.<br><br>
+
+                Fuerit toto in consulatu sine provincia, cui fuerit, antequam designatus est, decreta provincia. Sortietur an non? Nam et non sortiri absurdum est, et, quod sortitus sis, non habere. Proficiscetur paludatus? Quo? Quo pervenire ante certam diem non licebit. ianuario, Februario, provinciam non habebit; Kalendis ei denique Martiis nascetur repente provincia.<br><br>
+
+                Inter haec </p>
+{% endblock %}
+
+{# Footer #}
+{%  block footer %}
+        <h5>&copy Bucket-List {{ "now" |date('Y') }}</h5>
+        <a class="nav-link" href="{{path('app_legal')}}">Mentions Légales</a>
+
+{% endblock %}
+

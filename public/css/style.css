@@ -1,0 +1,15 @@
+*{
+    font-family: 'Lobster', cursive;
+}
+
+
+body{
+    background-color: aqua;
+
+}
+
+main{
+    min-height: 500px;
+    margin: 10px;
+    text-align: center;
+}
