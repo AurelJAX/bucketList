@@ -14,21 +14,27 @@
 
 {# Contenu #}
 {% block content  %}
-    <h1>Détails</h1>
+    <h1>Ajouter une idée</h1>
+    {% for label, messages in app.flashes %}
+        {% for message in messages  %}
+            <div class="alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
 
-        <p>{{ wish.title }}</p>
-        <p>{{ wish.description }}</p>
-        <p>{{ wish.author }}</p>
-        <p>{{ wish.dateCreated |date('D-m-Y H:i:s')}}</p>
+    <div class="formulaireAjout">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type ="submit" name="ajout" value="Ajouter une idée"/>
+        {{ form_end(form) }}
+    </div>
+
 
 {% endblock %}
-
-
-
 
 {# Footer #}
 {%  block footer %}
     <h5>@Bucket-List {{ "now" |date('Y') }}</h5>
     <a class="nav-link" href="{{path('app_legal')}}">Mentions Légales</a>
 {% endblock %}
-

@@ -5,9 +5,11 @@ namespace App\Controller;
 
 
 use App\Entity\Wish;
+use App\Form\AddIdeaType;
 use App\Repository\WishRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,7 +22,7 @@ class WishController extends AbstractController
         //Ajout des wish
        /* $wish = new Wish();
         $wish->setTitle("Sauver la planète")
-            ->setDescription("Participer à plein de projet en faveur de la défense de la nature")
+            ->setDescription("Participer à plein de projets en faveur de la défense de la nature")
             ->setAuthor("Aurélien")
             ->setIsPublished(true)
             ->setDateCreated(new \DateTime('now'));*/
@@ -33,7 +35,7 @@ class WishController extends AbstractController
 
         $wishList = $wr->findALl();
         $tab = compact('wishList');
-      # dd($tab);
+        #dd($tab);
         return $this->render('wish/list.html.twig', $tab);
     }
 
@@ -45,6 +47,31 @@ class WishController extends AbstractController
         $wish = $wr->find($id);
         $tabs = compact('wish');
         return $this->render('wish/detail.html.twig', $tabs);
+    }
+
+    /**
+     * @Route("/ajout", name="app_ajout")
+     */
+    public function ajout(Request $request, EntityManagerInterface $em): Response{
+        $idea = new Wish();
+        $form = $this->createForm(AddIdeaType::class, $idea);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+           // var_dump($idea);
+            $em->persist($idea);
+            $em->flush();
+            $id= $idea->getId();
+            //dd($idea);
+            $this->addFlash('success', 'Un rêve à réaliser en plus! Réver, c\'est être vivant');
+            return $this->redirectToRoute('app_details', [
+                                         'id'=> $id]);
+        }
+
+        return $this->render('main/ajout.html.twig', [
+            'form'=>$form->createView()
+        ]);
     }
 
 

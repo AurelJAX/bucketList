@@ -2,15 +2,21 @@
 
 namespace App\Controller;
 
+use App\Entity\Wish;
+use App\Form\AddIdeaType;
+use App\Repository\WishRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use DateTime;
+use Symfony\Config\Doctrine\Orm\EntityManagerConfig;
 
 class MainController extends AbstractController
 {
     /**
-     * @Route("/home", name="app_home")
+     * @Route("/", name="app_home")
      */
     public function home(): Response{
      /*   $menu=[
@@ -26,13 +32,6 @@ class MainController extends AbstractController
        ]);
     }
 
-    /**
-     * @Route("/contact", name="app_contact")
-     */
-    public function contact(): Response{
-
-        return $this->render('main/contact.html.twig');
-    }
 
     /**
      * @Route("/aboutUs", name="app_aboutUs")
@@ -49,6 +48,9 @@ class MainController extends AbstractController
 
         return $this->render('legal/legal_stuff.html.twig');
     }
+
+
+
 
 
 }

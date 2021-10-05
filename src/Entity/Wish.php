@@ -3,7 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\WishRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=WishRepository::class)
@@ -18,16 +20,30 @@ class Wish
     private $id;
 
     /**
+     *
+     * @Assert\NotBlank(message="Veuillez renseigner un titre d'idée")
+     * @Assert\Length(min="2", max="50",
+     *     minMessage = "Titre trop court! Au moins 2 caractères!",
+     *     maxMessage = "Titre trop long ! Maximum 50 caractères!",)
      * @ORM\Column(type="string", length=250)
      */
     private $title;
 
     /**
+     * @Assert\NotBlank(message="Veuillez renseigner une description")
+     * @Assert\Length(min="2", max="250",
+     *     minMessage = "Description trop courte! Au moins 2 caractères!",
+     *     maxMessage = "Description trop longue ! Maximum 250 caractères!",)
      * @ORM\Column(type="text")
      */
     private $description;
 
     /**
+     *
+     * @Assert\NotBlank(message="Veuillez renseigner un auteur")
+     * @Assert\Length(min="2", max="250",
+     *     minMessage = "Auteur trop court! Au moins 2 caractères!",
+     *     maxMessage = "Auteur trop long ! Maximum 250 caractères!",)
      * @ORM\Column(type="string", length=50)
      */
     private $author;
@@ -102,8 +118,17 @@ class Wish
 
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
+
         $this->dateCreated = $dateCreated;
 
         return $this;
     }
+
+    public function __construct()
+    {
+        $this->dateCreated= new DateTime("now");
+        $this->isPublished = true;
+    }
+
+
 }
