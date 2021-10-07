@@ -35,15 +35,32 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{path('app_liste')}}">Liste</a>
                     </li>
+
+                    {%  if app.user %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('app_ajout')}}">Ajouter une idée</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li>
+                    {%  endif %}
+
 
                 </ul>
+
                 <form class="d-flex">
+
+                    {%  if app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link login" href="{{path('app_logout')}}">Déconnexion</a>
+                        </li>
+                    {% else %}
+
+                        <li class="nav-item">
+                            <a class="nav-link login" href="{{url('app_register')}}">Créer un compte</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link login" href="{{path('app_login')}}">Se Connecter</a>
+                        </li>
+                    {%  endif %}
+
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>

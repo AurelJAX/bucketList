@@ -25,9 +25,46 @@
 
     <div class="formulaireAjout">
         {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type ="submit" name="ajout" value="Ajouter une idée"/>
+        <div class="formulaireAjout--sansBouton">
+        <div class="title">
+        <label for="{{ field_name(form.title) }}">Titre de l'idée : </label>
+        <input type="text"
+               id="{{ field_name(form.title) }}"
+               name="{{ field_name(form.title) }}"
+               value="{{ field_value(form.title) }}"
+               placeholder="{{ field_label(form.title) }}"
+               class="form-control"
+        ></div>
+
+        <div class="description">
+        <label for="{{ field_name(form.description) }}">Description de l'idée : </label>
+        <textarea type="textarea"
+               id="{{ field_name(form.description) }}"
+               name="{{ field_name(form.description) }}"
+               value="{{ field_value(form.description) }}"
+               placeholder="{{ field_label(form.description) }}"
+               class="form-control"
+        ></textarea></div>
+
+        <div class="author">
+            <label for="{{ field_name(form.author) }}">Auteur de l'idée : </label>
+            <input type="text"
+                   id="{{ field_name(form.author) }}"
+                   name="{{ field_name(form.author) }}"
+                   value="{{ app.User.username }}"
+                   placeholder="{{ field_label(form.author) }}"
+                   class="form-control"
+            ></div>
+
+        <div class="categorie">
+            <label>Catégorie : </label>
+              <p> {{ form_widget(form.categorie) }}    </p>
+        </div>
+
+        </div>
+        <button name="ajout" value="Ajouter une idée" class="addIdea">Ajouter une idée</button>
         {{ form_end(form) }}
+
     </div>
 
 

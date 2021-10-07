@@ -16,8 +16,18 @@
 {% block content  %}
     <h1>Détails</h1>
 
-        <p>{{ wish.title }}</p>
-        <p>{{ wish.description }}</p>
+    {% for label, messages in app.flashes %}
+        {% for message in messages  %}
+            <div class="alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+
+        <h3>{{ wish.title }}</h3>
+    <p><img src="{{ asset('images/nature.jpg') }}"/>  {{ wish.categorie.nom }} <img src="{{ asset('images/nature.jpg') }}"/></p>
+    <p>{{ wish.description }}</p>
         <p>{{ wish.author }}</p>
         <p>{{ wish.dateCreated |date('D-m-Y H:i:s')}}</p>
 

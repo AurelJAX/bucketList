@@ -15,6 +15,10 @@
 {# Contenu #}
 {% block content  %}
         <h1>Accueil</h1>
+        <h2>{% if app.user %}
+                <div class="mb-3">
+                        Bienvenue {{ app.user.username }}
+        {% endif %}</h2>
 
         <p>Et quia Mesopotamiae tractus omnes crebro inquietari sueti praetenturis et stationibus servabantur agrariis, laevorsum flexo itinere Osdroenae subsederat extimas partes, novum parumque aliquando temptatum commentum adgressus. quod si impetrasset, fulminis modo cuncta vastarat. erat autem quod cogitabat huius modi.<br><br>
 

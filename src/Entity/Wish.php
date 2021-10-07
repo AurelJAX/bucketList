@@ -24,7 +24,7 @@ class Wish
      * @Assert\NotBlank(message="Veuillez renseigner un titre d'idée")
      * @Assert\Length(min="2", max="50",
      *     minMessage = "Titre trop court! Au moins 2 caractères!",
-     *     maxMessage = "Titre trop long ! Maximum 50 caractères!",)
+     *     maxMessage = "Titre trop long! Maximum 50 caractères!",)
      * @ORM\Column(type="string", length=250)
      */
     private $title;
@@ -33,7 +33,7 @@ class Wish
      * @Assert\NotBlank(message="Veuillez renseigner une description")
      * @Assert\Length(min="2", max="250",
      *     minMessage = "Description trop courte! Au moins 2 caractères!",
-     *     maxMessage = "Description trop longue ! Maximum 250 caractères!",)
+     *     maxMessage = "Description trop longue! Maximum 250 caractères!",)
      * @ORM\Column(type="text")
      */
     private $description;
@@ -57,6 +57,12 @@ class Wish
      * @ORM\Column(type="datetime")
      */
     private $dateCreated;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="wishes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
 
     public function getId(): ?int
     {
@@ -128,6 +134,18 @@ class Wish
     {
         $this->dateCreated= new DateTime("now");
         $this->isPublished = true;
+    }
+
+    public function getCategorie(): ?Categories
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categories $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
     }
 
 

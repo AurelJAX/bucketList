@@ -18,11 +18,17 @@
 
 
     {# boucle foreach pour afficher les wish#}
-    <ul>
-        {% for item  in wishList|reverse %}
-            <a href="{{ path("app_details",{'id':item.id }) }}">{{ item.title }} - {{ item.dateCreated |date('d/m/y') }}</a><br>
-        {%  endfor %}
-    </ul>
+    <div class="container">
+        <ul class="list">
+            {% for item  in wishList %}
+              <div class="liensVersDetails">
+                  <img src="{{ asset('images/nopic.png') }}"/>
+                  <a  href="{{ path("app_details",{'id':item.id }) }}">
+                         {{ item.categorie.nom }} : {{ item.title }} - {{ item.dateCreated | date('d/m/y') }}</a>
+              </div>
+            {%  endfor %}
+        </ul>
+    </div>
 {% endblock %}
 
 {# Footer #}

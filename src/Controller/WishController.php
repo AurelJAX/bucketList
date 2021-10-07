@@ -33,7 +33,7 @@ class WishController extends AbstractController
         #dd($wr->findByTitle("Sauver la planète"));
         #dd($wr->findByAuthor("Aurélien"));
 
-        $wishList = $wr->findALl();
+        $wishList = $wr->findAllWithCategory();
         $tab = compact('wishList');
         #dd($tab);
         return $this->render('wish/list.html.twig', $tab);
@@ -42,7 +42,7 @@ class WishController extends AbstractController
     /**
      * @Route("/detail/{{id}}", name="app_details")
      */
-    public function details($id=0, WishRepository $wr): Response{
+    public function details($id, WishRepository $wr): Response{
         #dd($id);
         $wish = $wr->find($id);
         $tabs = compact('wish');
@@ -50,6 +50,7 @@ class WishController extends AbstractController
     }
 
     /**
+     *
      * @Route("/ajout", name="app_ajout")
      */
     public function ajout(Request $request, EntityManagerInterface $em): Response{
@@ -62,12 +63,13 @@ class WishController extends AbstractController
            // var_dump($idea);
             $em->persist($idea);
             $em->flush();
-            $id= $idea->getId();
-            //dd($idea);
+
+            //var_dump($idea);
             $this->addFlash('success', 'Un rêve à réaliser en plus! Réver, c\'est être vivant');
             return $this->redirectToRoute('app_details', [
-                                         'id'=> $id]);
+                                         'id'=> $idea->getId()]);
         }
+
 
         return $this->render('main/ajout.html.twig', [
             'form'=>$form->createView()

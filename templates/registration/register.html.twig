@@ -1,0 +1,30 @@
+{% extends 'layout/base.html.twig' %}
+
+{# Lien au stylesheet #}
+{%  block stylesheet %}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+{% endblock %}
+
+{# Titre de nav #}
+{% block mainTitle %}
+    <img src="/images/logo.png"/>
+    My Bucket-List
+{% endblock %}
+
+{% block content %}
+    <h1>Rejoins-nous</h1>
+<div class="register">
+    {{ form_start(registrationForm) }}
+    <div>  {{ form_row(registrationForm.email) }}</div>
+    <div>  {{ form_row(registrationForm.username) }}</div>
+    <div>   {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}</div>
+    <div>     {{ form_row(registrationForm.agreeTerms) }}</div>
+
+        <input type="submit" class="btn" value="Créer son compte"></input>
+    {{ form_end(registrationForm) }}
+</div>
+
+
+{% endblock %}
